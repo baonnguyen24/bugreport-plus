@@ -4,7 +4,7 @@ CREATE TABLE users (
     password_hash VARCHAR(255) NOT NULL,
     full_name VARCHAR(100) NOT NULL,
     role VARCHAR(50) NOT NULL DEFAULT 'USER',
-    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE bugs (
@@ -22,9 +22,9 @@ CREATE TABLE bugs (
         FOREIGN KEY (reporter_id)
         REFERENCES users (id),
     
-    CONSTRAIN fk_assigned_user
+    CONSTRAINT fk_assigned_user
         FOREIGN KEY (assigned_user_id)
-        REFERENCES users (id),
+        REFERENCES users (id)
 );
 
 CREATE TABLE comments (
@@ -47,7 +47,7 @@ CREATE TABLE comments (
 CREATE TABLE attachments (
     id BIGSERIAL PRIMARY KEY,
     bug_id BIGINT NOT NULL,
-    file_name VARCAHR(255) NOT NULL,
+    file_name VARCHAR(255) NOT NULL,
     file_type VARCHAR(50) NOT NULL,
     storage_path VARCHAR(512) NOT NULL,
     uploaded_by BIGINT NOT NULL,
@@ -60,5 +60,5 @@ CREATE TABLE attachments (
 
     CONSTRAINT fk_uploaded_by
         FOREIGN KEY (uploaded_by)
-        REFFERENCES users (id)
+        REFERENCES users (id)
 );

@@ -27,7 +27,7 @@ public class BugService {
 
     // Create new Bug report
     @Transactional
-    public Bug createBug(Bug bug, long reporterId) {
+    public Bug createBug(Bug bug, Long reporterId) {
         User reporter = userService.findById(reporterId);
         
         if(reporter == null) {
@@ -53,13 +53,13 @@ public class BugService {
 
     // Retrieve a single bug by Id
     @Transactional(readOnly = true)
-    public Optional<Bug> findBugById(long bugId) {
+    public Optional<Bug> findBugById(Long bugId) {
         return bugRepository.findById(bugId);
     }
 
     // Update Bug's details
     @Transactional
-    public Optional<Bug> updateBugDetails(long bugId, Bug updatedBug) {
+    public Optional<Bug> updateBugDetails(Long bugId, Bug updatedBug) {
         return bugRepository.findById(bugId).map(bug -> {
             bug.setTitle(updatedBug.getTitle());
             bug.setDescription(updatedBug.getDescription());
@@ -72,7 +72,7 @@ public class BugService {
     // Assign bug to a user
     @Transactional
     @PreAuthorize("hasAnyRole('ADMIN', 'QA')")
-    public Optional<Bug> assignBug(long bugId, long assignedUserId) {
+    public Optional<Bug> assignBug(Long bugId, Long assignedUserId) {
         User assignedUser = userService.findById(assignedUserId);
 
         if(assignedUser == null) {
@@ -90,7 +90,7 @@ public class BugService {
     // Update status of Bug Report
     @Transactional
     @PreAuthorize("hasAnyRole('ADMIN', 'QA')")
-    public Optional<Bug> updateBugStatus(long bugId, Bug.Status newStatus) {
+    public Optional<Bug> updateBugStatus(Long bugId, Bug.Status newStatus) {
         return bugRepository.findById(bugId).map(bug -> {
             bug.setStatus(newStatus);
             bug.setUpdatedAt(Instant.now());
@@ -101,7 +101,7 @@ public class BugService {
 
     // Filter bug report by user
     @Transactional(readOnly = true)
-    public List<Bug> findBugReportedByUser(long userId) {
+    public List<Bug> findBugReportedByUser(Long userId) {
         User user = userService.findById(userId);
 
         if(user == null) {

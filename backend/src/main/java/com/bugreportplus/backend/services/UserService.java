@@ -1,5 +1,7 @@
 package com.bugreportplus.backend.services;
 
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,12 +15,12 @@ import com.bugreportplus.backend.repositories.UserRepository;
 
 
 @Service
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     // Constructor
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -46,6 +48,11 @@ public class UserService implements UserDetailsService{
     @Transactional(readOnly = true)
     public User findById(Long id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
     
 }
