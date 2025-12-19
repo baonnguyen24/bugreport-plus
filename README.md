@@ -18,6 +18,22 @@ BugReport+ is designed with quality as a first-class citizen. While the applicat
 
 **- Quality Assurance**: Playwright (E2E & UI Testing), JUnit 5, MockMvc (Backend Integration Testing)
 
+### Test Cases:
+✅ *GET /api/v1/bugs/{bugId}/comments* should retrieve comments for bug.  
+✅ *POST /api/v1/bugs/{bugId}/comments* should create comments for bug.  
+✅ *POST /api/v1/bugs/{bugId}/comments* should return 400 Bad Request if comment is empty.  
+✅ *POST /api/v1/bugs/{bugId}/comments* should return 404 Not Found if bug is invalid.  
+✅ Authorized access should return 401 Unauthorized.  
+✅ E2E Automation: Allow creating a new bug, updating its status and comments.
+
+
+ℹ️ *POST /api/v1/bugs* should successfully report a new bug.  
+ℹ️ *GET /api/v1/bugs/{id}* shoild successfully retrieve a bug by Id.  
+ℹ️ *GET /api/v1/bugs* should retrieve all bugs in db.   
+ℹ️ *PUT /api/v1/bugs/{id}/status* should successfully update the bug status.  
+ℹ️ *PUT /api/v1/bugs/{id}/assign* should successfully assign the bug to a specified user.  
+ℹ️ *POST /api/v1/bugs* should return 400 Bad Request if a required field (title) is missing.  
+
 ---
 
 ## 🗺️ Roadmap
