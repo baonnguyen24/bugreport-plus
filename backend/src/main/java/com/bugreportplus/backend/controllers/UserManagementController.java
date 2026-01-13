@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bugreportplus.backend.models.User;
-import com.bugreportplus.backend.repositories.UserRepository;
 import com.bugreportplus.backend.services.UserService;
 
 @RestController

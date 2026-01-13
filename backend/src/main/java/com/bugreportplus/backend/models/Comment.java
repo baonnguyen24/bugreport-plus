@@ -28,7 +28,7 @@ public class Comment {
     private Bug bug;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User author;
 
     @Column(nullable = false, updatable = false)
